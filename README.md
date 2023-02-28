@@ -23,6 +23,19 @@ PORT=7861       # port mapping
 VOLUME=data     # docker volume storage mount point, eg. ./data to /data
 ```
 
+If you modified the value of **VOLUME**, for example from **VOLUME=data** to **VOLUME=volume**, please follow these steps as well,
+
+```bash
+$ cat .env
+
+...
+VOLUME=volume   # docker volume storage mount point, eg. ./data to /data
+```
+
+```bash
+$ mv data volume
+```
+
 ## Pre-download models and etc.
 
 Here are some models for reference,
@@ -60,19 +73,19 @@ These models, and others. will be linked in Docker once the container is success
 ## Installation
 
 ```bash
-$ docker compose --profile cpu up -d    # for CPU
+$ docker compose --profile cpu up -d     # for CPU
 
-$ docker compose --profile gpu up -d    # for GPU
+$ docker compose --profile gpu up -d     # for GPU
 ```
 
 Please wait while the process completes.
 
 If you want to track the progress,
 
-```
-$ docker compose --profile cpu logs -f     # for CPU
+```bash
+$ docker compose --profile cpu logs -f   # for CPU
 
-$ docker compose --profile gpu logs -f     # for GPU
+$ docker compose --profile gpu logs -f   # for GPU
 ```
 
 ## Usage

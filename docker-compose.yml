@@ -1,0 +1,37 @@
+version: '3'
+
+x-base: &base
+  build:
+    context: .
+    dockerfile: Dockerfile
+  ports:
+    - "${PORT:-7861}:${PORT:-7861}"
+  volumes:
+    - &volume "./${VOLUME:-data}:/${VOLUME:-data}"
+
+services:
+  automatic1111-gpu: &gpu
+    <<: *base
+    profiles: ["gpu"]
+    build:
+      args:
+        BUILD_ARGS: --medvram --allow-code --enable-insecure-extension-access --api --listen --port ${PORT} --exit
+        RUN_ARGS: --medvram --allow-code --enable-insecure-extension-access --api --listen --port ${PORT}
+        VOLUME: ${VOLUME:-data}
+    deploy:
+     resources:
+       reservations:
+         devices:
+           - driver: nvidia
+             device_ids: ['0']
+             capabilities: [gpu]
+
+  automatic1111-cpu:
+    <<: *gpu
+    profiles: ["cpu"]
+    build:
+      args:
+        BUILD_ARGS: --lowvram --precision full --no-half --allow-code --enable-insecure-extension-access --api --listen --port ${PORT} --exit --skip-torch-cuda-test
+        RUN_ARGS: --lowvram --precision full --no-half --allow-code --enable-insecure-extension-access --api --listen --port ${PORT}
+        VOLUME: ${VOLUME:-data}
+    deploy: {}

@@ -78,7 +78,7 @@ $ docker compose --profile gpu logs -f     # for GPU
 ### Usage
 
 * Open your browser and navigate to **http://127.0.0.1:7861**. The default port specified in the **.env** file is **7861**.
-* The saved images will be located in the **data** directory.
+* The saved images will be located in the **data/outputs** directory.
 * Examples of prompts can be found in **data/prompts**.
 
 ### Restart, Stop or Deinstallation

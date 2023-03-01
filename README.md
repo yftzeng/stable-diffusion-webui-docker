@@ -104,3 +104,10 @@ $ docker compose --profile cpu stop      # for stop
 $ docker compose --profile cpu down      # for deinstallation
 ```
 
+## FAQ
+
+### Q: Error message : "RuntimeError: mat1 and mat2 shapes cannot be multiplied (77x1024 and 768x320)"
+
+![RuntimeError: mat1 and mat2 shapes cannot be multiplied](https://live.staticflickr.com/65535/52720126599_9910f655de_b.jpg "Stable Diffusion checkpoint")
+
+When encountering the aforementioned error message, please select "**v1-5-pruned-emaonly.safetensors**" for the "**Stable Diffusion checkpoint**" to indicate that this operation is currently only supported by Stable Diffusion 1.5.

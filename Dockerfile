@@ -20,7 +20,7 @@ ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
 RUN \
-    if [ "$TZ" = "Asia/Taipei" ]; then sed -i '/^deb/{s/ [^ ]*/ http:\/\/free.nchc.org.tw\/ubuntu\//1}' /etc/apt/sources.list fi \
+    if [ "$TZ" = "Asia/Taipei" ]; then sed -i '/^deb/{s/ [^ ]*/ http:\/\/free.nchc.org.tw\/ubuntu\//1}' /etc/apt/sources.list ;fi \
     && apt-get update \
     && apt-get dist-upgrade -yq --no-install-recommends \
     && apt-get install -yq --no-install-recommends \

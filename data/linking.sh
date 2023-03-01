@@ -5,6 +5,6 @@ for D in ${DIR[@]}
 do
   mkdir -p $HOME/stable-diffusion-webui/$D
   cd $HOME/stable-diffusion-webui/$D
-  ln -sf /data/$D/* .
+  ln -sf /${VOLUME}/$D/* .
   cd -
 done

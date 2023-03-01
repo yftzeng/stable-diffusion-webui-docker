@@ -22,7 +22,7 @@ RUN \
     apt-get update \
     && apt-get dist-upgrade -yq --no-install-recommends \
     && apt-get install -yq --no-install-recommends \
-        curl \
+        sudo \
         git-core \
 	git-lfs \
 	python3 \
@@ -30,10 +30,9 @@ RUN \
 	python3-venv \
 	python3-opencv \
     && groupadd --gid $USER_GID $USERNAME \
-    && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
-    && apt-get install -yq --no-install-recommends sudo \
-    && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
-    && chmod 0440 /etc/sudoers.d/$USERNAME \
+       && useradd --uid $USER_UID --gid $USER_GID -m $USERNAME \
+       && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
+       && chmod 0440 /etc/sudoers.d/$USERNAME \
     && curl -sL https://raw.githubusercontent.com/AUTOMATIC1111/stable-diffusion-webui/master/webui.sh | sudo -u $USERNAME env COMMANDLINE_ARGS="${BUILD_ARGS}" bash \
     && sudo -u $USERNAME mkdir -p /home/$USERNAME/stable-diffusion-webui/models/openpose \
        && sudo -u $USERNAME curl -Lo /home/$USERNAME/stable-diffusion-webui/models/openpose/body_pose_model.pth https://huggingface.co/lllyasviel/ControlNet/resolve/main/annotator/ckpts/body_pose_model.pth \

@@ -15,6 +15,7 @@ services:
     profiles: ["gpu"]
     build:
       args:
+        TZ: ${TZ}
         BUILD_ARGS: --medvram --allow-code --enable-insecure-extension-access --api --listen --port ${PORT} --exit
         RUN_ARGS: --medvram --allow-code --enable-insecure-extension-access --api --listen --port ${PORT}
         VOLUME: ${VOLUME:-data}
@@ -31,6 +32,7 @@ services:
     profiles: ["cpu"]
     build:
       args:
+        TZ: ${TZ}
         BUILD_ARGS: --lowvram --precision full --no-half --allow-code --enable-insecure-extension-access --api --listen --port ${PORT} --exit --skip-torch-cuda-test
         RUN_ARGS: --lowvram --precision full --no-half --allow-code --enable-insecure-extension-access --api --listen --port ${PORT}
         VOLUME: ${VOLUME:-data}

@@ -36,6 +36,7 @@ RUN \
        && echo $USERNAME ALL=\(root\) NOPASSWD:ALL > /etc/sudoers.d/$USERNAME \
        && chmod 0440 /etc/sudoers.d/$USERNAME \
     && curl -sL https://raw.githubusercontent.com/AUTOMATIC1111/stable-diffusion-webui/master/webui.sh | sudo -u $USERNAME env COMMANDLINE_ARGS="${BUILD_ARGS}" bash \
+    && sudo -u $USERNAME python3 -m pip install xformers \
     && sudo -u $USERNAME mkdir -p /home/$USERNAME/stable-diffusion-webui/models/openpose \
        && sudo -u $USERNAME curl -Lo /home/$USERNAME/stable-diffusion-webui/models/openpose/body_pose_model.pth https://huggingface.co/lllyasviel/ControlNet/resolve/main/annotator/ckpts/body_pose_model.pth \
        && sudo -u $USERNAME curl -Lo /home/$USERNAME/stable-diffusion-webui/models/openpose/hand_pose_model.pth https://huggingface.co/lllyasviel/ControlNet/resolve/main/annotator/ckpts/hand_pose_model.pth \

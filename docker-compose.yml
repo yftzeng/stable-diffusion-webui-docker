@@ -16,8 +16,8 @@ services:
     build:
       args:
         TZ: ${TZ}
-        BUILD_ARGS: --medvram --allow-code --enable-insecure-extension-access --api --listen --port ${PORT} --exit
-        RUN_ARGS: --medvram --allow-code --enable-insecure-extension-access --api --listen --port ${PORT}
+        BUILD_ARGS: --medvram --allow-code --enable-insecure-extension-access --api --listen --port ${PORT} --xformers --exit
+        RUN_ARGS: --medvram --allow-code --enable-insecure-extension-access --api --listen --port ${PORT} --xformers
         VOLUME: ${VOLUME:-data}
     deploy:
      resources:

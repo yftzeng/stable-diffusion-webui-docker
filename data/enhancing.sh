@@ -14,12 +14,11 @@ arr+=(["https://huggingface.co/stabilityai/sd-vae-ft-mse-original/resolve/main/v
 # embeddings
 arr+=(["https://huggingface.co/datasets/gsdf/EasyNegative/resolve/main/EasyNegative.safetensors"]="embeddings")
 
-current_directory=$(pwd)
-
 for key in ${!arr[@]}; do
   mkdir -p "${arr[${key}]}"
-  cd "${arr[${key}]}"
-  echo "Download ${key} to ${arr[${key}]}"
-  curl -sLO -C - "${key}"
-  cd ${current_directory}
+  download_to="${arr[${key}]}"/$(basename "${key}")
+  if [ ! -f "$download_to" ]; then
+    echo "Download ${key} to ${arr[${key}]}"
+    curl -Lo "$download_to" "${key}"
+  fi
 done

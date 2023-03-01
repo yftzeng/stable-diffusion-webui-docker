@@ -48,4 +48,5 @@ RUN \
 WORKDIR /home/$USERNAME/stable-diffusion-webui
 USER $USERNAME
 
+#ENTRYPOINT ["tail", "-f", "/dev/null"]
 CMD bash -c ". $HOME/stable-diffusion-webui/venv/bin/activate ; bash /${VOLUME}/linking.sh ; python3 -u webui.py ${RUN_ARGS}"

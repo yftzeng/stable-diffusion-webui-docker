@@ -37,11 +37,11 @@ RUN \
        && chmod 0440 /etc/sudoers.d/$USERNAME \
     && curl -sL https://raw.githubusercontent.com/AUTOMATIC1111/stable-diffusion-webui/master/webui.sh | sudo -u $USERNAME env COMMANDLINE_ARGS="${BUILD_ARGS}" bash \
     && sudo -u $USERNAME python3 -m pip install xformers \
-    && sudo -u $USERNAME mkdir -p /home/$USERNAME/stable-diffusion-webui/models/openpose \
-       && sudo -u $USERNAME curl -Lo /home/$USERNAME/stable-diffusion-webui/models/openpose/body_pose_model.pth https://huggingface.co/lllyasviel/ControlNet/resolve/main/annotator/ckpts/body_pose_model.pth \
-       && sudo -u $USERNAME curl -Lo /home/$USERNAME/stable-diffusion-webui/models/openpose/hand_pose_model.pth https://huggingface.co/lllyasviel/ControlNet/resolve/main/annotator/ckpts/hand_pose_model.pth \
     && sudo -u $USERNAME git clone https://github.com/Mikubill/sd-webui-controlnet.git /home/$USERNAME/stable-diffusion-webui/extensions/sd-webui-controlnet \
-    && sudo -u $USERNAME git clone https://huggingface.co/webui/ControlNet-modules-safetensors /home/$USERNAME/stable-diffusion-webui/extensions/ControlNet-modules-safetensors
+    && sudo -u $USERNAME git clone https://huggingface.co/webui/ControlNet-modules-safetensors /home/$USERNAME/stable-diffusion-webui/extensions/ControlNet-modules-safetensors \
+    && sudo -u $USERNAME mkdir -p /home/$USERNAME/stable-diffusion-webui/extensions/sd-webui-controlnet/annotator/openpose \
+       && sudo -u $USERNAME curl -Lo /home/$USERNAME/stable-diffusion-webui/extensions/sd-webui-controlnet/annotator/openpose/body_pose_model.pth https://huggingface.co/lllyasviel/ControlNet/resolve/main/annotator/ckpts/body_pose_model.pth \
+       && sudo -u $USERNAME curl -Lo /home/$USERNAME/stable-diffusion-webui/extensions/sd-webui-controlnet/annotator/openpose/hand_pose_model.pth https://huggingface.co/lllyasviel/ControlNet/resolve/main/annotator/ckpts/hand_pose_model.pth
 
 COPY --chown=$USERNAME:$USERNAME ${VOLUME}/config.json /home/$USERNAME/stable-diffusion-webui/config.json
 

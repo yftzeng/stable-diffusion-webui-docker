@@ -24,6 +24,7 @@ RUN \
     && apt-get update \
     && apt-get dist-upgrade -yq --no-install-recommends \
     && apt-get install -yq --no-install-recommends \
+        curl \
         sudo \
         git-core \
 	git-lfs \

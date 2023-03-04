@@ -53,7 +53,7 @@ arr+=(["https://huggingface.co/prompthero/openjourney-v2/resolve/main/openjourne
 arr+=(["https://huggingface.co/ckpt/anything-v4.5-vae-swapped/resolve/main/anything-v4.5-vae-swapped.safetensors"]="models/Stable-diffusion")
 arr+=(["https://huggingface.co/dreamlike-art/dreamlike-photoreal-2.0/resolve/main/dreamlike-photoreal-2.0.safetensors"]="models/Stable-diffusion")
 arr+=(["https://huggingface.co/nuigurumi/basil_mix/resolve/main/Basil_mix_fixed.safetensors"]="models/Stable-diffusion")
-arr+=(["https://huggingface.co/Alsebay/Chilloutmix-Ni-fix/resolve/main/Chilloutmix-Ni-fix/Chilloutmix-Ni-prune-fp32-fix.safetensors"]="models/Stable-diffusion")
+arr+=(["https://huggingface.co/swl-models/chilloutmix-ni/resolve/main/chilloutmix-Ni-ema-fp32.safetensors"]="models/Stable-diffusion")
 # vae
 arr+=(["https://huggingface.co/stabilityai/sd-vae-ft-mse-original/resolve/main/vae-ft-mse-840000-ema-pruned.safetensors"]="models/VAE")
 # embeddings

@@ -1,9 +1,6 @@
 version: '3'
 
 x-base: &base
-  build:
-    context: .
-    dockerfile: Dockerfile
   ports:
     - "${PORT:-7861}:${PORT:-7861}"
   volumes:
@@ -14,6 +11,8 @@ services:
     <<: *base
     profiles: ["gpu"]
     build:
+      context: .
+      dockerfile: ${DOCKERFILE:-Dockerfile}
       args:
         TZ: ${TZ}
         BUILD_ARGS: --medvram --allow-code --enable-insecure-extension-access --api --listen --port ${PORT} --xformers --exit
@@ -31,6 +30,8 @@ services:
     <<: *gpu
     profiles: ["cpu"]
     build:
+      context: .
+      dockerfile: ${DOCKERFILE:-Dockerfile}
       args:
         TZ: ${TZ}
         BUILD_ARGS: --lowvram --precision full --no-half --allow-code --enable-insecure-extension-access --api --listen --port ${PORT} --exit --skip-torch-cuda-test

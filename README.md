@@ -18,9 +18,10 @@ Edit your environment,
 ```bash
 $ cat .env
 
-TZ=Etc/UTC      # timezone
-PORT=7861       # port mapping
-VOLUME=data     # docker volume storage mount point, eg. ./data to /data
+TZ=Etc/UTC                   # timezone
+PORT=7861                    # port mapping
+VOLUME=data                  # docker volume storage mount point, eg. ./data to /data
+DOCKERFILE=Dockerfile        # Specify Dockerfile
 ```
 
 If you modified the value of **VOLUME**, for example from **VOLUME=data** to **VOLUME=volume**, please follow these steps as well,
@@ -111,3 +112,20 @@ $ docker compose --profile cpu down      # for deinstallation
 ![RuntimeError: mat1 and mat2 shapes cannot be multiplied](https://live.staticflickr.com/65535/52720126599_9910f655de_b.jpg "Stable Diffusion checkpoint")
 
 When encountering the aforementioned error message, please select "**v1-5-pruned-emaonly.safetensors**" for the "**Stable Diffusion checkpoint**" to indicate that this operation is currently only supported by Stable Diffusion 1.5.
+
+### Q: ERROR: Could not find a version that satisfies the requirement torch==1.13.1+cu117
+
+If you come across the issue outlined in [stable-diffusion-webui](https://github.com/AUTOMATIC1111/stable-diffusion-webui/issues/7166), a possible solution is to utilize Python 3.10, as described below:
+
+Edit your environment, change **DOCKERFILE=Dockerfile** to **DOCKERFILE=Dockerfile.py310**.
+
+```bash
+$ cat .env
+
+TZ=Etc/UTC                   # timezone
+PORT=7861                    # port mapping
+VOLUME=data                  # docker volume storage mount point, eg. ./data to /data
+DOCKERFILE=Dockerfile.py310  # Specify Dockerfile
+```
+
+The next operation is as usual.
